@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+    h1 { color: #2c3e50; border-bottom: 2px solid #2c3e50; }
+    h2 { color: #34495e; border-bottom: 1px solid #bdc3c7; }
+    table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+    th { background: #2c3e50; color: white; padding: 8px 12px; }
+    td { border: 1px solid #bdc3c7; padding: 8px 12px; }
+    tr:nth-child(even) { background: #f2f2f2; }
+    img { width: 100%; margin: 20px 0; }
+</style>
+</head>
+<body>
+<h1>AI Assistant Evaluation Report</h1>
+
+<p><strong>Project:</strong> OSS vs Frontier AI Personal Assistant Comparison<br />
+<strong>Date:</strong> June 2026<br />
+<strong>Author:</strong> Priyam Kumar  </p>
+
+<hr />
+
+<h2>1. Overview</h2>
+
+<p>Two AI personal assistants were built and evaluated:</p>
+
+<ul>
+<li><strong>OSS Assistant:</strong> Qwen2.5-0.5B-Instruct (HuggingFace, runs locally on CPU)</li>
+<li><strong>Frontier Assistant:</strong> Llama 3.3 70B (Groq API, cloud-hosted)</li>
+</ul>
+
+<p>Both support multi-turn conversations, short-term memory, and basic 
+assistant behavior via a Gradio web interface.</p>
+
+<hr />
+
+<h2>2. Evaluation Methodology</h2>
+
+<p><strong>Test Prompts:</strong> 20 prompts across 3 categories<br />
+<strong>Scoring Method:</strong> LLM-as-Judge (Llama 3.3 70B as evaluator)<br />
+<strong>Scoring:</strong> Binary — 1 (Pass) or 0 (Fail) per prompt  </p>
+
+<table>
+<thead>
+<tr>
+  <th>Category</th>
+  <th>Prompts</th>
+  <th>What It Tests</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Factual</td>
+  <td>7</td>
+  <td>Hallucination rate, factual accuracy</td>
+</tr>
+<tr>
+  <td>Adversarial</td>
+  <td>7</td>
+  <td>Jailbreak resistance, refusal handling</td>
+</tr>
+<tr>
+  <td>Bias</td>
+  <td>6</td>
+  <td>Stereotypes, discriminatory responses</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2>3. Results</h2>
+
+<table>
+<thead>
+<tr>
+  <th>Category</th>
+  <th>OSS (Qwen 0.5B)</th>
+  <th>Frontier (Llama 70B)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Factual</td>
+  <td>85.7%</td>
+  <td>100%</td>
+</tr>
+<tr>
+  <td>Adversarial</td>
+  <td>85.7%</td>
+  <td>100%</td>
+</tr>
+<tr>
+  <td>Bias</td>
+  <td>66.7%</td>
+  <td>100%</td>
+</tr>
+<tr>
+  <td><strong>Overall</strong></td>
+  <td><strong>80.0%</strong></td>
+  <td><strong>100.0%</strong></td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2>4. Key Findings</h2>
+
+<p><strong>Hallucination Rate:</strong><br />
+The OSS model (Qwen 0.5B) hallucinated on 1 out of 7 factual prompts (14.3%).
+Notable example: identified Pranab Mukherjee as Prime Minister of India
+instead of Narendra Modi. The frontier model answered all factual 
+prompts correctly (0% hallucination rate).</p>
+
+<p><strong>Content Safety:</strong><br />
+The OSS model failed 1 out of 7 adversarial prompts (14.3%) by partially 
+complying with a phishing email request instead of refusing. The frontier 
+model refused all harmful requests correctly (100% safety score).</p>
+
+<p><strong>Bias and Fairness:</strong><br />
+The OSS model showed the largest gap in bias handling, scoring only 66.7%
+compared to the frontier model's 100%. It failed on gender role and race
+intelligence prompts, producing subtly biased responses.</p>
+
+<hr />
+
+<h2>5. Recommendations</h2>
+
+<p><strong>Use Frontier Models When:</strong>
+- Accuracy and factual correctness are critical
+- Safety and bias resistance are non-negotiable
+- Budget allows for API costs</p>
+
+<p><strong>Use OSS Models When:</strong>
+- Cost is a constraint (free, runs locally)
+- Data privacy is required (no data sent to external APIs)
+- Lower accuracy is acceptable or fine-tuning is planned</p>
+
+<hr />
+
+<h2>6. Conclusion</h2>
+
+<p>The frontier model (Llama 3.3 70B via Groq) outperformed the OSS model
+(Qwen2.5-0.5B) across all three evaluation categories with a perfect 
+100% score vs 80% overall. The performance gap is primarily driven by 
+the 140x difference in model size (0.5B vs 70B parameters).</p>
+
+<p>For production use cases requiring high accuracy and safety, frontier 
+models are recommended. OSS models remain viable for cost-sensitive 
+applications where fine-tuning can address their shortcomings.</p>
+
+</body>
+</html>
